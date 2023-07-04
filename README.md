@@ -1,16 +1,9 @@
-# todo_list
+# Todo List
 
-A new Flutter project.
+Todo List is a simple Flutter application that allows you to manage your tasks. You can add, toggle, and delete tasks with ease.
 
-## Getting Started
+## Features
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- Add tasks: Enter a task description and tap the "Add" button to add it to your list.
+- Check task completion: Tap the checkbox next to a task to mark it as complete or incomplete.
+- Delete tasks: Long-press a task to bring up a confirmation dialog and delete the task.
