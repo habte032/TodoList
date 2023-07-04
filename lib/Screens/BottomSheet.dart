@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:todo_list/modal/task_data.dart';
 
 
 class AddTask extends StatelessWidget {
 
-  final List<Widget> tasks=[];
-  late String text;
+   String text='';
   bool isChecked=false;
   late Function toggleCheckBoxState;
-  final Function callback;
 
-  AddTask( this.callback);
 
   @override
   Widget build(BuildContext context) {
@@ -36,15 +35,14 @@ class AddTask extends StatelessWidget {
                     text=value;
                 },
               ),
-              SizedBox(height: 15,),
+              SizedBox(height: 30,),
               Center(
                 child: Container(
                   width: double.infinity,
                   color: Colors.lightBlueAccent,
                   child: TextButton(
-
                     onPressed: () {
-                      callback(text);
+                      Provider.of<TaskData>(context,listen: false).addTask(text);
                       Navigator.pop(context);
                     }, child: Text('Add',textAlign: TextAlign.center,
                     style: TextStyle(color: Colors.white,fontSize: 14),
