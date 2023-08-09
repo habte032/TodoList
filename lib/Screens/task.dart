@@ -13,7 +13,7 @@ class taskScreen extends StatefulWidget {
 
 class _taskScreenState extends State<taskScreen> {
 
- TaskData a=new TaskData();
+  TaskData a=new TaskData();
 
   @override
   @override
@@ -68,29 +68,29 @@ class _taskScreenState extends State<taskScreen> {
             ),
             Expanded(
               flex: 5,
-                child: Container(
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(20),
-                      topRight: Radius.circular(20),
-                    ),
-                  ),
-                  padding: const EdgeInsets.only(top: 20.0),
-                  child: Consumer<TaskData>(
-                    builder: (context, taskData, child) {
-                      return taskData.tasks.length == 0
-                          ? Center(
-                        child: Text(
-                          'Add new Task',
-                          textAlign: TextAlign.center,
-                        ),
-                      )
-                          : TaskList(taskData);
-                    },
+              child: Container(
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(20),
+                    topRight: Radius.circular(20),
                   ),
                 ),
+                padding: const EdgeInsets.only(top: 20.0),
+                child: Consumer<TaskData>(
+                  builder: (context, taskData, child) {
+                    return taskData.tasks.length == 0
+                        ? Center(
+                      child: Text(
+                        'Add new Task',
+                        textAlign: TextAlign.center,
+                      ),
+                    )
+                        : TaskList(taskData);
+                  },
+                ),
+              ),
 
             ),
           ],
@@ -100,6 +100,7 @@ class _taskScreenState extends State<taskScreen> {
         backgroundColor: Colors.lightBlueAccent,
         onPressed: () {
           showModalBottomSheet(
+            useSafeArea: true,
             context: context,
             isScrollControlled: true,
             builder: (context) => AddTask(),
@@ -114,7 +115,7 @@ class _taskScreenState extends State<taskScreen> {
 
 class TaskList extends StatefulWidget {
   TaskList(this.taskData);
-final TaskData taskData;
+  final TaskData taskData;
 
   @override
   State<TaskList> createState() => _TaskListState();
@@ -126,45 +127,45 @@ class _TaskListState extends State<TaskList> {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: widget.taskData.tasks.length,
-      itemBuilder: (context, index){
-        final task=widget.taskData.tasks[index];
-        return TaskTile(
-          isChecked:task.isDone,
-          title: task.name,
-          toggleCheckBoxState: (checkboxState){
-               setState(() {
-                 task.togglecheck();
-               });
-          },
-          deleteTask:() {
-            showDialog(
-              context: context,
-              builder: (BuildContext context) {
-                return AlertDialog(
-                  title: Text('Delete Task'),
-                  content: Text('Are you sure you want to delete this ${task.name}?'),
-                  actions: [
-                    TextButton(
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
-                      child: Text('Cancel'),
-                    ),
-                    TextButton(
-                      onPressed: () {
-                        widget.taskData.deleteTask(task);
-                        Navigator.of(context).pop();
-                      },
-                      child: Text('Delete'),
-                    ),
-                  ],
-                );
-              },
-            );
-          },
-        );
-      });
+        itemCount: widget.taskData.tasks.length,
+        itemBuilder: (context, index){
+          final task=widget.taskData.tasks[index];
+          return TaskTile(
+            isChecked:task.isDone,
+            title: task.name,
+            toggleCheckBoxState: (checkboxState){
+              setState(() {
+                task.togglecheck();
+              });
+            },
+            deleteTask:() {
+              showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return AlertDialog(
+                    title: Text('Delete Task'),
+                    content: Text('Are you sure you want to delete this ${task.name}?'),
+                    actions: [
+                      TextButton(
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        child: Text('Cancel'),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          widget.taskData.deleteTask(task);
+                          Navigator.of(context).pop();
+                        },
+                        child: Text('Delete'),
+                      ),
+                    ],
+                  );
+                },
+              );
+            },
+          );
+        });
   }
 }
 
@@ -187,6 +188,5 @@ class TaskTile extends StatelessWidget{
     );
   }
 }
-
 
 

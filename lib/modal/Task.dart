@@ -8,5 +8,5 @@ class Task{
 
   void togglecheck(){
     isDone=!isDone;
-}
+  }
 }

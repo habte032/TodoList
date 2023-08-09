@@ -29,6 +29,7 @@ class AddTask extends StatelessWidget {
               TextField(
                 textAlign: TextAlign.center,
                 autofocus: true,
+                maxLines: null,
                 decoration: InputDecoration(
                 ),
                 onChanged: (value){
